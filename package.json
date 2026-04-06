@@ -1,0 +1,14 @@
+{
+  "name": "bioinformatics-genomics-beyond",
+  "version": "1.0.0",
+  "description": "Bioinformatics, Genomics and Beyond - Eric Winter",
+  "scripts": {
+    "dev": "slidev slides.md --open",
+    "build": "slidev build slides.md",
+    "export": "slidev export slides.md --format pdf --output ../Winter_BioInformatics_2026.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^52.14.2",
+    "@slidev/theme-default": "latest"
+  }
+}

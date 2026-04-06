@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.slidev/
+
+# Export artifacts
+*.pdf
+*.pptx
+
+# OS
+.DS_Store
