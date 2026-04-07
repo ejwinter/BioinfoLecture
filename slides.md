@@ -185,17 +185,24 @@ The variant calling venn on the next slide makes the uncertainty tangible.
 -->
 
 ---
-layout: image
-image: /images/variant_venn.png
+layout: two-cols
 ---
 
 # No Two Callers Agree
 
-<!--
-Source: https://genomemedicine.biomedcentral.com/articles/10.1186/gm432
-Different callers (GATK, SAMTools, SOAPsnp, SNVer, GNUMAP) find different variants — the overlap is the confidence zone.
-Pipeline selection and management is a real engineering and scientific problem.
--->
+- Run the same data through five different variant callers — they find **different variants**
+
+- Only **57%** of called variants are found by all five tools
+
+- The overlap is the confidence zone. The disagreement is where engineering judgment matters.
+
+- Pipeline selection, tuning, and validation are real engineering and scientific problems
+
+<div class="label">O'Rawe et al. Genome Medicine (2013). https://genomemedicine.biomedcentral.com/articles/10.1186/gm432</div>
+
+::right::
+
+<img src="/images/variant_venn.png" style="width:100%;height:100%;object-fit:contain;" />
 
 ---
 
@@ -320,6 +327,69 @@ These are genuine CS/ML problems. SpliceAI is a deep neural net. AlphaFold solve
   - UK Biobank: 500k genomes. The discoveries accelerate as the dataset grows.
 
 - A great primer: [nature.com/articles/s43586-021-00056-9](https://www.nature.com/articles/s43586-021-00056-9)
+
+---
+
+# Polygenic Risk Scores (PRS)
+
+- One variant = tiny effect. **Thousands combined = meaningful prediction.** This is PRS.
+
+- How it's built: take GWAS effect sizes across thousands of variants, weight and combine them using ML — the result is a single score per person
+
+- Clinical use today: risk stratification for heart disease, diabetes, breast cancer — helping doctors intervene **before** symptoms appear
+
+- A CS problem through and through: feature selection, model training, cross-validation — all on population-scale genomic data
+
+- The frontier: PRS is entering clinical workflows now, but challenges remain — scores built on European populations don't always transfer to other ancestries. **Fixing this is an open problem.**
+
+<!--
+PRS is one of the clearest examples of ML directly impacting patient care.
+For the CS audience: this is logistic regression / penalized regression at massive scale, with real stakes.
+The ancestry bias problem is both a data engineering challenge and an equity issue — great area for new researchers.
+-->
+
+---
+
+# Pharmacogenomics
+
+- Why does the same drug work for one patient and fail for another? Often the answer is in their genome.
+
+- **Pharmacogenomics** uses genetic variants to predict drug response — right drug, right dose, right patient
+
+- Already clinical today:
+  - Warfarin dosing guided by CYP2C9/VKORC1 variants
+  - Cancer therapies selected based on tumor mutations (e.g. EGFR inhibitors for specific lung cancers)
+  - Antidepressant selection guided by CYP2D6 metabolizer status
+
+- The engineering challenge: integrating genomic data into electronic health records so it's available **at the point of care**, not buried in a report
+
+- This is personalized medicine — and it's one of the most immediate ways bioinformatics saves lives
+
+<!--
+Very relatable for students: "have you ever had a medication that didn't work for you?"
+The EHR integration problem is a massive software engineering challenge — HL7 FHIR, CDS Hooks, clinical decision support. Lots of room for engineers here.
+-->
+
+---
+
+# Example: Genomics in Cancer Care
+
+- A patient is diagnosed with lung cancer. Here's where bioinformatics enters:
+
+- **Tumor sequencing** — the tumor is biopsied and sequenced, looking for mutations driving the cancer
+
+- **Variant interpretation** — is this mutation known to respond to a targeted therapy? Check ClinVar, CKB, OncoKB
+
+- **Treatment selection** — EGFR mutation found → prescribe a targeted inhibitor instead of broad chemotherapy. Better outcomes, fewer side effects.
+
+- **Monitoring** — liquid biopsy (cell-free DNA from a blood draw) can track whether the tumor is responding or developing resistance — without another biopsy
+
+- **Every step of this pipeline was built by someone with your skills** — sequencing pipelines, variant callers, knowledge bases, clinical decision support, monitoring dashboards
+
+<!--
+Walk through this like a story. Make it real.
+The point: this isn't abstract. A bioinformatician's code runs in the critical path between a patient's sample and their treatment decision.
+-->
 
 ---
 
@@ -468,15 +538,51 @@ This loops back to Know Your Business. AI amplifies what you bring. If you bring
 
 ---
 
+# A Day in the Life: Maya, Genomic Bioinformatician
+
+- **8:30 AM** — Reviews overnight variant interpretation queue. Flags two VUS cases for genetic counselor discussion.
+
+- **10:00 AM** — Validates a new splice site prediction model against known pathogenic variants. Writes up results for the team.
+
+- **1:00 PM** — Meets with genetic counselors to discuss a complex case — a patient with a rare variant not yet in ClinVar. Her domain knowledge shapes the interpretation.
+
+- **3:00 PM** — Files a request to the engineering team: the reporting tool needs a new field for pharmacogenomic results. She writes the spec because she understands both the clinical need and the data model.
+
+- **Maya's edge:** she reads the biology papers, attends tumor boards, and understands *why* the data matters — not just how to process it.
+
+---
+
+# A Day in the Life: Alex, Bioinformatics Software Engineer
+
+- **8:30 AM** — A Nextflow pipeline failed overnight on 200 samples. Debugs a memory issue in the variant calling step, pushes a fix, reruns.
+
+- **10:00 AM** — Builds a new feature in the clinical reporting dashboard based on Maya's spec — adding pharmacogenomic annotations to patient reports.
+
+- **1:00 PM** — Deploys an updated pipeline to GCP. Monitors throughput and cost per sample. Shaves 15% off runtime by tuning parallelism.
+
+- **3:00 PM** — Pairs with a data scientist on a PRS model — helps optimize the training pipeline to run across the full biobank cohort.
+
+- **Alex's edge:** he understands cloud infrastructure, pipeline engineering, and performance — but he also learned enough biology to ask the right questions and build what clinicians actually need.
+
+<!--
+The point: two very different days, same field, constant collaboration. Both need domain knowledge. Both need engineering skills. The mix is different, but the overlap is where the magic happens.
+-->
+
+---
+
 # Your Career Starts Now
+
+- I started as a Research Technologist with degrees in Biology and Chemistry. I found I had little enthusiasm for running other people's experiments. Pivoting to Software Engineering was hard — and it was the best decision I ever made. **Be willing to pivot.**
 
 - You're extremely lucky if you land your dream job right away — and that's okay. Start somewhere tolerable and grow from there.
 
-- Build in public — get your code on GitHub. Make it something you'd proudly show in an interview.
+- **Agility is your primary skill.** Small pivots, large pivots — the ability to redirect is what keeps you relevant. The job you have in five years probably doesn't exist yet.
 
-- Never stop learning — informally, formally (M.S., Ph.D.), or just by building things that excite you
+- Build in public — get your code on GitHub. Contribute to open-source bioinformatics (nf-core, Bioconductor). Real résumé material, real community.
 
-- Transform yourself continually. The job you have in five years probably doesn't exist yet.
+- Plug in: [nf-core Slack](https://nf-co.re/join), ASHG, AMIA, Bioinformatics Stack Exchange — your network will shape your career as much as your skills
+
+- You're graduating into a field where a single engineer's work can change a patient's outcome. **Not many careers offer that.**
 
 ---
 layout: end
