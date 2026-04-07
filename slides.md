@@ -36,7 +36,15 @@ Welcome slide — QR code links to slide deck URL once deployed.
 
 # This Talk
 
-- An agenda...
+- What is bioinformatics — and why it's broader than you think
+- My work at Mayo Clinic
+- Know your business — AI as a force multiplier
+- The genome — scale, sequencing, and where the real work lives
+- Clinical applications — interpretation, PRS, pharmacogenomics, cancer care
+- Beyond genomics — transcriptomics, spatial, and the -omes
+- Tools of the trade — pipelines, cloud, databases
+- A day in the life — two careers, one field
+- Getting started and career advice
 
 ---
 
