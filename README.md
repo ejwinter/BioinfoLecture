@@ -2,7 +2,7 @@
 
 A lecture presentation by **Eric Winter M.S.** delivered at Winona State University, April 2026.
 
-Built with [Slidev](https://sli.dev/).
+Built with [Slidev](https://sli.dev/). [Download the PDF](Winter-Bioinfo.pdf).
 
 ## Overview
 
