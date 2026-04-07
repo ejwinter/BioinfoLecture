@@ -5,6 +5,7 @@
 
 /* --- Global slide background --- */
 .slidev-layout {
+  background-color: #1a2744;
   background-image: url('/images/wave-bg.svg');
   background-size: cover;
   background-position: center;

@@ -49,15 +49,35 @@ npm run dev
 
 Then open [http://localhost:3030](http://localhost:3030) in your browser.
 
-## Building / Exporting
+- **Presenter mode:** navigate to [http://localhost:3030/presenter](http://localhost:3030/presenter) to see speaker notes, next slide preview, and timer.
+- **Remote access:** run `npx slidev --remote` to allow others to view the presentation on your network.
+
+## Exporting to PDF
 
 ```bash
-# Static site
-npm run build
+# Install Playwright (required for PDF export, one-time setup)
+npx playwright install chromium
 
-# PDF export
-npm run export
+# Export to PDF
+npx slidev export
+
+# Export with custom filename
+npx slidev export --output my-talk.pdf
+
+# Export in dark mode
+npx slidev export --dark
+
+# Export with click animations (each click step gets its own page)
+npx slidev export --with-clicks
 ```
+
+## Building a Static Site
+
+```bash
+npm run build
+```
+
+This generates a static SPA in the `dist/` directory that can be hosted anywhere (GitHub Pages, Netlify, etc.).
 
 ## Author
 
